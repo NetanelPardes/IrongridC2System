@@ -43,7 +43,7 @@ namespace IronGridC2Produser.Servise
             }
         }
 
-        public async Task<DeliveryResult<Null, string>> SendTopicAsync<T>(string topic, T message)
+        public async Task<DeliveryResult<Null, string>> SendMessageToTopicAsync<T>(string topic, T message)
         {
             string json = JsonSerializer.Serialize(message);
             var kafkaMessage = new Message<Null, string>
