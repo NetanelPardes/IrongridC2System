@@ -9,6 +9,7 @@ namespace IronGridC2Consumer.Models
 {
     public class AssetLiveStatus
     {
+        //public int Id { get; set; }
         public int AssetId { get; set; }
         public Assets assets { get; set; } = null!;
 
