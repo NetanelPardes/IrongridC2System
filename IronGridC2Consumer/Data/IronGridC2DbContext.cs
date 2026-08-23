@@ -14,7 +14,9 @@ namespace IronGridC2Consumer.Data
         {
 
         }
-        public DbSet<AssetLiveStatus> Tracks { get; set; } = null!;
+        public DbSet<AssetLiveStatus> AssetLiveStatus { get; set; } = null!;
+        public DbSet<Assets> Assets { get; set; } = null!;
+        public DbSet<Units> Units { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

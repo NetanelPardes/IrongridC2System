@@ -1,9 +1,12 @@
+-- docker exec -i db mysql -u root -proot <seed_database.sql
+
 -- ============================================================
 -- SECTION 1: DATABASE SETUP
 -- ============================================================
 
 -- Create the database required for the system.
-CREATE DATABASE testDb;
+CREATE DATABASE IF NOT EXISTS testDb;
+USE testDb;
 
 
 
@@ -15,11 +18,11 @@ CREATE DATABASE testDb;
 -- Define all required columns, data types, constraints,
 -- and the primary key according to the project specification.
 
-CREATE TABLE Units(
-Id int PRIMARY KEY NOT NULL,
+CREATE TABLE IF NOT EXISTS Units(
+Id int PRIMARY KEY,
 UnitName varchar(255) DEFAULT "Unknown Unit",
-Sector varchar(255) DEFAULT "General",
-PRIMARY KEY(Id)
+Sector varchar(255) DEFAULT "General"
+
 );
 
 
@@ -33,12 +36,11 @@ PRIMARY KEY(Id)
 -- Define all required columns, data types, constraints,
 -- and the primary key according to the project specification.
 
-CREATE TABLE Assets(  
-Id int PRIMARY KEY NOT NULL,
+CREATE TABLE IF NOT EXISTS Assets(  
+Id int PRIMARY KEY,
 UnitId int NOT NULL,
 AssetSerial varchar(255) NOT NULL,
-AssetType varchar(255) DEFAULT GenericAsset,
-PRIMARY KEY(Id),
+AssetType varchar(255) DEFAULT "GenericAsset",
 FOREIGN KEY (UnitId)
     REFERENCES Units(Id)
 );
@@ -54,15 +56,15 @@ FOREIGN KEY (UnitId)
 -- Define all required columns, data types, constraints,
 -- and the primary key according to the project specification.
 
-CREATE TABLE Units(
-Id int PRIMARY KEY NOT NULL,
+CREATE TABLE IF NOT EXISTS Units(
+Id int PRIMARY KEY ,
 AssetId int NOT NULL,
 AssetType varchar(255) NOT NULL,
 RawValue varchar(255) NOT NULL,
 ProcessedStatus varchar(255),
 IsVerified BOOL NOT NULL,
-LastUpdate DATETIME NOT NULL
-PRIMARY KEY(Id),
+LastUpdate DATETIME NOT NULL,
+
 FOREIGN KEY (AssetId)
     REFERENCES Assets(Id)
     );
