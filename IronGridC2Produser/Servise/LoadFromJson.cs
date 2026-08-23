@@ -17,6 +17,5 @@ namespace IronGridC2Produser.Servise
             List<AssetLiveStatus>? AssetLiveStatusList = JsonSerializer.Deserialize<List<AssetLiveStatus>>(json);
             return AssetLiveStatusList ?? new List<AssetLiveStatus>();
         }
-
     }
 }
