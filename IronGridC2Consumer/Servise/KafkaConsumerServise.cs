@@ -61,7 +61,7 @@ namespace IronGridC2Consumer.Servise
                 RawValue = result.RawValue,
                 ProcessedStatus = processedStatus,
                 IsVerified = isVerified,
-                LastUpdate = result.LastUpdate
+                LastUpdate = result.Timestamp
             };
             if (await ProcessEventAsync(newAssetLiveStatus))
             {
@@ -111,7 +111,7 @@ namespace IronGridC2Consumer.Servise
                 RawValue = rawValue,
                 ProcessedStatus = processedStatus,
                 IsVerified = isVerified,
-                LastUpdate = result.LastUpdate
+                LastUpdate = result.Timestamp
             };
             if (await ProcessEventAsync(newAssetLiveStatus))
             {

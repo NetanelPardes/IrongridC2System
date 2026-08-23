@@ -17,6 +17,6 @@ namespace IronGridC2Produser.Models
         public string RawValue { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "LastUpdate id required)]")]
-        public DateTime LastUpdate { get; set; }
+        public DateTime Timestamp { get; set; }
     }
 }
