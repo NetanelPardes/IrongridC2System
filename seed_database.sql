@@ -56,8 +56,7 @@ FOREIGN KEY (UnitId)
 -- Define all required columns, data types, constraints,
 -- and the primary key according to the project specification.
 
-CREATE TABLE IF NOT EXISTS Units(
-Id int PRIMARY KEY ,
+CREATE TABLE IF NOT EXISTS AssetLiveStatus(
 AssetId int NOT NULL,
 AssetType varchar(255) NOT NULL,
 RawValue varchar(255) NOT NULL,
@@ -67,8 +66,7 @@ LastUpdate DATETIME NOT NULL,
 
 FOREIGN KEY (AssetId)
     REFERENCES Assets(Id)
-    );
-
+);
 
 
 
