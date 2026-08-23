@@ -17,7 +17,7 @@ namespace IronGridC2Produser
 
 
             var loadDataFromJson = new LoadFromJson();
-            var field_reportsList = loadDataFromJson.LoadAssetLiveStatusData("Data/field_reports.json");
+            var field_reportsList = loadDataFromJson.LoadRealTimeReportsData("Data/field_reports.json");
 
 
             var service = new KafkaProduserServise(Connection);

@@ -11,11 +11,11 @@ namespace IronGridC2Produser.Servise
     public class LoadFromJson
     {
 
-        public List<AssetLiveStatus> LoadAssetLiveStatusData(string filePath)
+        public List<RealTimeReports> LoadRealTimeReportsData(string filePath)
         {
             string json = File.ReadAllText(filePath);
-            List<AssetLiveStatus>? AssetLiveStatusList = JsonSerializer.Deserialize<List<AssetLiveStatus>>(json);
-            return AssetLiveStatusList ?? new List<AssetLiveStatus>();
+            List<RealTimeReports>? RealTimeReportsList = JsonSerializer.Deserialize<List<RealTimeReports>>(json);
+            return RealTimeReportsList ?? new List<RealTimeReports>();
         }
     }
 }
