@@ -6,5 +6,6 @@ namespace IronGridC2Api.Servise
     {
         Task<List<AssetWithAssetLiveStatusDto>> GetAllAssetLiveStatusAsync();
         Task<AssetWithAssetLiveStatusDto?> GetAssetWithAssetLiveStatusByIdAsync(int id);
+        Task<List<AssetWithAssetLiveStatusDto>> GetAssetWithAssetLiveStatusByStatusAsync(string status);
     }
 }

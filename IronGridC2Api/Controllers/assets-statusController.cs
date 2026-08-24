@@ -38,7 +38,13 @@ public class assets_statusController : ControllerBase
         return Ok(AssetWithStatus);
     }
 
+    [HttpGet("status")]
+    public async Task<ActionResult<List<AssetWithAssetLiveStatusDto>>> GetAllByStatus([FromQuery] string status)
+    {
+        var AssetWithAssetLiveByStatus = await _assetsStatusRepository.GetAssetWithAssetLiveStatusByStatusAsync(status);
 
+        return Ok(AssetWithAssetLiveByStatus);
+    }
 
 }
 

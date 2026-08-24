@@ -14,7 +14,7 @@ namespace IronGridC2Api.Models
         public int Id { get; set; }
 
         public int UnitId { get; set; }
-        [JsonIgnore]
+        [JsonIgnore]    
         public Units units { get; set; } = null!;
 
         [Required(ErrorMessage = "AssetSerial id required")]
