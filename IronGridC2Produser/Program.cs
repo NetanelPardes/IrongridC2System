@@ -19,7 +19,6 @@ namespace IronGridC2Produser
             var loadDataFromJson = new LoadFromJson();
             var field_reportsList = loadDataFromJson.LoadRealTimeReportsData("Data/field_reports.json");
 
-
             var service = new KafkaProduserServise(Connection);
 
             await service.EnsureTopicEistsAsync(UAVTopic);
@@ -32,7 +31,7 @@ namespace IronGridC2Produser
                 {
                     await service.SendMessageToTopicAsync(UAVTopic, item);
                 }
-                else if(item.AssetType == "PerimeterSensor")
+                else if (item.AssetType == "PerimeterSensor")
                 {
                     await service.SendMessageToTopicAsync(PerimeterSensorTopic, item);
                 }
