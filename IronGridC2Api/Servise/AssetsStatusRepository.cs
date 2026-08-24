@@ -52,5 +52,41 @@ namespace IronGridC2Api.Servise
             return result;
         }
 
+        public async Task<AssetWithAssetLiveStatusDto?> GetAssetWithAssetLiveStatusByIdAsync(int id)
+        {
+            var Asset = await _DbContext.Assets.FindAsync(id);
+            if(Asset == null)
+            {
+                return null;
+            }
+            var exist = await _DbContext.AssetLiveStatus.FirstOrDefaultAsync(x => x.AssetId == Asset.Id);
+            if (exist == null)
+            {
+                var asset = new AssetWithAssetLiveStatusDto
+                {
+                    Id = Asset.Id,
+                    UnitId = Asset.UnitId,
+                    AssetSerial = Asset.AssetSerial,
+                    AssetType = Asset.AssetType
+                };
+                return asset;
+            }
+            else
+            {
+                var asset = new AssetWithAssetLiveStatusDto
+                {
+                    Id = Asset.Id,
+                    UnitId = Asset.UnitId,
+                    AssetSerial = Asset.AssetSerial,
+                    AssetType = Asset.AssetType,
+                    RawValue = exist.RawValue,
+                    ProcessedStatus = exist.ProcessedStatus,
+                    IsVerified = exist.IsVerified,
+                    LastUpdate = exist.LastUpdate
+                };
+                return asset;
+            }
+        }
+
     }
 }
