@@ -27,5 +27,23 @@ namespace IronGridC2Api.Servise
                 .FirstOrDefaultAsync(i => i.Id == id);
         }
 
+        public async Task<CreateAssetsDto> CreateAssetsAsync(CreateAssetsDto newAssets)
+        {
+            var CreatedAssets = new Assets
+            {
+                Id = newAssets.Id,
+                UnitId = newAssets.UnitId,
+                AssetSerial = newAssets.AssetSerial,
+                AssetType = newAssets.AssetType
+            };
+            _DbContext.Assets.Add(CreatedAssets);
+
+            await _DbContext.SaveChangesAsync();
+
+            return newAssets;
+        }
+
+
+
     }
 }

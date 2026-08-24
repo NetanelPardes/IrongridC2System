@@ -6,7 +6,7 @@ using IronGridC2Api.DTO;
 namespace IronGridC2Api.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("api/[controller]")]
 public class AssetsController : ControllerBase
 {
     private readonly IAssetsRepository _assetsRepository;
@@ -27,6 +27,29 @@ public class AssetsController : ControllerBase
 
         return Ok(asset);
     }
+
+
+//    {
+//  "id": 102,
+//  "unitId": 3,
+//  "assetSerial": "UAV-COAST-071",
+//  "assetType": "UAV"
+//}
+    [HttpPost("units")]
+    public async Task<ActionResult<CreateAssetsDto>> Post(CreateAssetsDto newAssets)
+    {
+        var exist = await _assetsRepository.GetByIdAsync(newAssets.Id);
+        if(exist != null)
+        {
+
+            return BadRequest($"This assets with id {newAssets.Id} already exists.");
+        }
+        var createdAsset = await _assetsRepository.CreateAssetsAsync(newAssets);
+
+        return CreatedAtAction(nameof(GetById),new { id = createdAsset.Id }, createdAsset);
+    }
+
+
 
 }
 
