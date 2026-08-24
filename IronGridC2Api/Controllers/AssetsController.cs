@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using IronGridC2Api.DTO;
+using IronGridC2Api.Models;
 using IronGridC2Api.Servise;
-using IronGridC2Api.DTO;
+using Microsoft.AspNetCore.Mvc;
 
 
 namespace IronGridC2Api.Controllers;
@@ -49,7 +50,18 @@ public class AssetsController : ControllerBase
         return CreatedAtAction(nameof(GetById),new { id = createdAsset.Id }, createdAsset);
     }
 
+    [HttpPut("{id}")]
+    public async Task<ActionResult<Assets>> Put(int id, UpdateAssetsDto updateAssets)
+    {
+        var updated = await _assetsRepository.UpdateAssetsAsync(id, updateAssets);
 
+        if (updated == null)
+        {
+            return NotFound();
+        }
+
+        return Ok(updated);
+    }
 
 }
 

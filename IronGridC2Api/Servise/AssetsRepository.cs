@@ -44,6 +44,25 @@ namespace IronGridC2Api.Servise
         }
 
 
+        public async Task<Assets?> UpdateAssetsAsync( int id, UpdateAssetsDto updateAssets)
+        {
+            var existingAsset = await _DbContext.Assets.FindAsync(id);
+
+            if (existingAsset == null)
+            {
+                return null;
+            }
+
+            existingAsset.UnitId = updateAssets.UnitId;
+            existingAsset.AssetSerial = updateAssets.AssetSerial;
+            existingAsset.AssetType = updateAssets.AssetType;
+
+            await _DbContext.SaveChangesAsync();
+
+            return existingAsset;
+        }
+
+
 
     }
 }

@@ -1,4 +1,5 @@
 ﻿using IronGridC2Api.DTO;
+using IronGridC2Api.Models;
 
 namespace IronGridC2Api.Servise
 {
@@ -6,5 +7,6 @@ namespace IronGridC2Api.Servise
     {
         Task<AssetGetByIdDto?> GetByIdAsync(int id);
         Task<CreateAssetsDto> CreateAssetsAsync(CreateAssetsDto newAssets);
+        Task<Assets?> UpdateAssetsAsync(int id, UpdateAssetsDto updateAssets);
     }
 }

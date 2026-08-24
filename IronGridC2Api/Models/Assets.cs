@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace IronGridC2Api.Models
@@ -13,6 +14,7 @@ namespace IronGridC2Api.Models
         public int Id { get; set; }
 
         public int UnitId { get; set; }
+        [JsonIgnore]
         public Units units { get; set; } = null!;
 
         [Required(ErrorMessage = "AssetSerial id required")]
@@ -20,6 +22,7 @@ namespace IronGridC2Api.Models
 
         public string AssetType { get; set; } = "GenericAsset";
 
+        [JsonIgnore]
         public AssetLiveStatus assetLiveStatus { get; set; } = null!;
     }
 }
