@@ -4,6 +4,8 @@ namespace IronGridC2Api.Servise
 {
     public interface IReportsRepository
     {
-        Task<List<CriticalAssetsDto>> GetAllAsyncCriticalAssets();
+        Task<List<CriticalAssetsDto>> GetAllCriticalAssetsAsync();
+        Task<List<AssetForUnitDto>> GetAllAssetForUnitAsync(int unitID);
+        Task<List<SummaryDto>> GetSummaryAsync();
     }
 }

@@ -82,7 +82,7 @@ namespace IronGridC2Api.Servise
                     RawValue = exist.RawValue,
                     ProcessedStatus = exist.ProcessedStatus,
                     IsVerified = exist.IsVerified,
-                    LastUpdate = exist.LastUpdate
+                    LastUpdate =  exist.LastUpdate 
                 };
                 return asset;
             }
@@ -90,7 +90,9 @@ namespace IronGridC2Api.Servise
 
         public async Task<List<AssetWithAssetLiveStatusDto>> GetAssetWithAssetLiveStatusByStatusAsync(string status)
         {
-            return await _DbContext.Assets.Include(x => x.assetLiveStatus).Select(x => new AssetWithAssetLiveStatusDto
+            return await _DbContext.Assets.Include(x => x.assetLiveStatus)
+                .Where(x => x.assetLiveStatus.ProcessedStatus == status)
+                .Select(x => new AssetWithAssetLiveStatusDto
             {
                 Id = x.Id,
                 UnitId = x.UnitId,
@@ -102,38 +104,6 @@ namespace IronGridC2Api.Servise
                 LastUpdate = x.assetLiveStatus.LastUpdate
             }
             ).ToListAsync();
-            
-            //List<AssetWithAssetLiveStatusDto> result = new List<AssetWithAssetLiveStatusDto>();
-            //var Assets = await _DbContext.Assets.ToListAsync();
-            //foreach (var Asset in Assets)
-            //{
-            //    var exist = await _DbContext.AssetLiveStatus.FirstOrDefaultAsync(x => x.AssetId == Asset.Id);
-            //    if (exist == null)
-            //    {
-            //        continue;
-            //    }
-            //    else
-            //    {
-            //        var asset = new AssetWithAssetLiveStatusDto
-            //        {
-            //            Id = Asset.Id,
-            //            UnitId = Asset.UnitId,
-            //            AssetSerial = Asset.AssetSerial,
-            //            AssetType = Asset.AssetType,
-            //            RawValue = exist.RawValue,
-            //            ProcessedStatus = exist.ProcessedStatus,
-            //            IsVerified = exist.IsVerified,
-            //            LastUpdate = exist.LastUpdate
-            //        };
-            //        if(asset.ProcessedStatus == status)
-            //        {
-            //            result.Add(asset);
-            //        }
-                   
-            //    }
-
-            //}
-            //return result;
         }
     }
 }

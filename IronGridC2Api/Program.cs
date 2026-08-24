@@ -2,8 +2,10 @@ using IronGridC2Api.Data;
 using IronGridC2Api.Servise;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using StackExchange.Redis;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using StackExchange.Redis;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,6 +27,8 @@ builder.Services.AddScoped<IAssetsRepository, AssetsRepository>();
 builder.Services.AddScoped<IAssetsStatusRepository, AssetsStatusRepository>();
 builder.Services.AddScoped<IReportsRepository, ReportsRepository>();
 
+//builder.Services.AddSingleton<IConnectionMultiplexer>(ConnectionMultiplexer.Connect("Redis"));
+//builder.Services.AddHttpClient();
 
 
 var app = builder.Build();
@@ -43,4 +47,8 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+
+
+
 

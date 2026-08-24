@@ -20,9 +20,25 @@ public class reportsController : ControllerBase
     [HttpGet("critical-assets")]
     public async Task<ActionResult<List<CriticalAssetsDto>>> GetAllCriticalAssets()
     {
-        var criticalAssets = await _reportsRepository.GetAllAsyncCriticalAssets();
+        var criticalAssets = await _reportsRepository.GetAllCriticalAssetsAsync();
 
         return Ok(criticalAssets);
+    }
+
+    [HttpGet("unit/{unitId}/assets")]
+    public async Task<ActionResult<List<AssetForUnitDto>>> GetAllAssetForUnitAsync(int unitId)
+    {
+        var AssetForUnit = await _reportsRepository.GetAllAssetForUnitAsync(unitId);
+
+        return Ok(AssetForUnit);
+    }
+
+    [HttpGet("summary-by-unit")]
+    public async Task<ActionResult<List<SummaryDto>>> GetSummaryAssets()
+    {
+        var ummary = await _reportsRepository.GetSummaryAsync();
+
+        return Ok(ummary);
     }
 
 
