@@ -23,6 +23,8 @@ builder.Services.AddDbContext<IronGridC2DbContext>(options => options.UseMySql(c
 
 builder.Services.AddScoped<IAssetsRepository, AssetsRepository>();
 builder.Services.AddScoped<IAssetsStatusRepository, AssetsStatusRepository>();
+builder.Services.AddScoped<IReportsRepository, ReportsRepository>();
+
 
 
 var app = builder.Build();

@@ -47,7 +47,7 @@ public class AssetsController : ControllerBase
         }
         var createdAsset = await _assetsRepository.CreateAssetsAsync(newAssets);
 
-        return CreatedAtAction(nameof(GetById),new { id = createdAsset.Id }, createdAsset);
+        return StatusCode(201);
     }
 
     [HttpPut("{id}")]

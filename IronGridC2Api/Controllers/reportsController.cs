@@ -16,5 +16,16 @@ public class reportsController : ControllerBase
         _reportsRepository = reportsRepository;
     }
 
+
+    [HttpGet("critical-assets")]
+    public async Task<ActionResult<List<CriticalAssetsDto>>> GetAllCriticalAssets()
+    {
+        var criticalAssets = await _reportsRepository.GetAllAsyncCriticalAssets();
+
+        return Ok(criticalAssets);
+    }
+
+
+
 }
 
