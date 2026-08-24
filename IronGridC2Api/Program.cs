@@ -22,6 +22,8 @@ var conn = configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<IronGridC2DbContext>(options => options.UseMySql(conn, ServerVersion.AutoDetect(conn)));
 
 builder.Services.AddScoped<IAssetsRepository, AssetsRepository>();
+builder.Services.AddScoped<IAssetsStatusRepository, AssetsStatusRepository>();
+
 
 var app = builder.Build();
 

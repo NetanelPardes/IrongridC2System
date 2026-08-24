@@ -63,5 +63,19 @@ public class AssetsController : ControllerBase
         return Ok(updated);
     }
 
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete(int id)
+    {
+        var deleted = await _assetsRepository.DeleteAssetsAsync(id);
+
+        if (!deleted)
+        {
+            return NotFound();
+        }
+
+        return NoContent();
+    }
+
 }
 

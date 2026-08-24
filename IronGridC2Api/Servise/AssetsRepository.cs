@@ -63,6 +63,22 @@ namespace IronGridC2Api.Servise
         }
 
 
+        public async Task<bool> DeleteAssetsAsync(int id)
+        {
+            var product = await _DbContext.Assets.FindAsync(id);
+
+            if (product == null)
+            {
+                return false;
+            }
+
+            _DbContext.Assets.Remove(product);
+
+            await _DbContext.SaveChangesAsync();
+
+            return true;
+        }
+
 
     }
 }

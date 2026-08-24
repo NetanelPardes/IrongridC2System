@@ -8,5 +8,6 @@ namespace IronGridC2Api.Servise
         Task<AssetGetByIdDto?> GetByIdAsync(int id);
         Task<CreateAssetsDto> CreateAssetsAsync(CreateAssetsDto newAssets);
         Task<Assets?> UpdateAssetsAsync(int id, UpdateAssetsDto updateAssets);
+        Task<bool> DeleteAssetsAsync(int id);
     }
 }
