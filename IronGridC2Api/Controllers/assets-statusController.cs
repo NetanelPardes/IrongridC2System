@@ -22,7 +22,6 @@ public class assets_statusController : ControllerBase
         _redis = redis.GetDatabase();
     }
 
-
     [HttpGet]
     public async Task<ActionResult<List<AssetWithAssetLiveStatusDto>>> GetAll()
     {
