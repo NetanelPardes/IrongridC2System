@@ -27,8 +27,7 @@ builder.Services.AddScoped<IAssetsRepository, AssetsRepository>();
 builder.Services.AddScoped<IAssetsStatusRepository, AssetsStatusRepository>();
 builder.Services.AddScoped<IReportsRepository, ReportsRepository>();
 
-//builder.Services.AddSingleton<IConnectionMultiplexer>(ConnectionMultiplexer.Connect("Redis"));
-//builder.Services.AddHttpClient();
+builder.Services.AddSingleton<IConnectionMultiplexer>(ConnectionMultiplexer.Connect(builder.Configuration.GetConnectionString("Redis")!));
 
 
 var app = builder.Build();
