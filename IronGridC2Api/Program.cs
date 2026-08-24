@@ -1,4 +1,5 @@
 using IronGridC2Api.Data;
+using IronGridC2Api.Servise;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -19,6 +20,8 @@ var configuration = new ConfigurationBuilder()
                 .Build();
 var conn = configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<IronGridC2DbContext>(options => options.UseMySql(conn, ServerVersion.AutoDetect(conn)));
+
+builder.Services.AddScoped<IAssetsRepository, AssetsRepository>();
 
 var app = builder.Build();
 
